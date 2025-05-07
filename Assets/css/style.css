@@ -1,32 +1,26 @@
 /* ===== Typography ===== */
-.atkinson-hyperlegible-regular {
+.atkinson-hyperlegible {
     font-family: "Atkinson Hyperlegible", serif;
+}
+
+.atkinson-hyperlegible.regular {
     font-weight: 400;
     font-style: normal;
 }
 
-.atkinson-hyperlegible-bold {
-    font-family: "Atkinson Hyperlegible", serif;
+.atkinson-hyperlegible.bold {
     font-weight: 700;
     font-style: normal;
 }
 
-.atkinson-hyperlegible-regular-italic {
-    font-family: "Atkinson Hyperlegible", serif;
+.atkinson-hyperlegible.regular-italic {
     font-weight: 400;
     font-style: italic;
 }
 
-.atkinson-hyperlegible-bold-italic {
-    font-family: "Atkinson Hyperlegible", serif;
+.atkinson-hyperlegible.bold-italic {
     font-weight: 700;
     font-style: italic;
-}
-
-.racing-sans-one-regular {
-    font-family: "Racing Sans One", serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
 /* ===== General Styles ===== */
@@ -171,7 +165,7 @@ header h1 {
 }
 
 .workshop-text h2 {
-    font-family: 'Racing Sans One', sans-serif;
+    font-family: 'Atkinson Hyperlegible', serif;
     font-size: 2rem;
     margin-bottom: 20px;
     color: #e3e3e1;
@@ -219,11 +213,12 @@ header h1 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.contact-box h3, .opening-hours-box h3, .info-box h3 {
-    font-size: 1.5rem;
+.contact-box h3, .opening-hours-box h3, .info-box h3, .services-box h3 {
+    font-size: 2rem;
     margin-bottom: 10px;
     color: #e3e3e1;
 }
+
 
 .contact-box p, .opening-hours-box ul, .info-box p, .info-box ul {
     margin: 0;
@@ -255,8 +250,10 @@ header h1 {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    padding: 0 20px;
+    /* Remove horizontal padding */
+    padding: 0;
 }
+
 
 iframe {
     width: 100%;
@@ -265,16 +262,37 @@ iframe {
 }
 
 /* Plain Links */
-.plain-link, .address-link {
+.plain-link {
     color: #e3e3e1 !important;
     text-decoration: none !important;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: 
+        color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+        background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 6px;
 }
 
-.plain-link:hover, .address-link:hover {
-    opacity: 0.8;
-    transform: scale(1.1);
+.plain-link:hover, .plain-link:focus {
+    color: #43b9d3 !important;
+    background-color: #232423;
+    box-shadow: 0 2px 8px rgba(67, 185, 211, 0.2);
+    opacity: 1;
+    transform: scale(1.07);
+    text-decoration: underline;
+    outline: none;
 }
+
+.plain-link.lit-up {
+    background-color: #43b9d3;
+    color: #fff !important;
+    box-shadow: 0 0 8px 2px #43b9d3, 0 0 2px 1px #fff;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border-radius: 6px;
+}
+
 
 /* ===== Animations ===== */
 @keyframes fadeIn {
@@ -330,3 +348,58 @@ iframe {
         transition: none !important;
     }
 }
+
+.services-box {
+    flex: 2;
+    min-width: 400px;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding-left: 0;
+    list-style-type: none;
+    text-align: left;
+}
+
+.services-list li {
+    margin-bottom: 10px;
+}
+
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 250px;
+}
+
+@media (max-width: 768px) {
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        width: 100%;
+    }
+
+    .services-box {
+        width: 100%;
+    }
+}
+.box {
+    background-color: #444;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
