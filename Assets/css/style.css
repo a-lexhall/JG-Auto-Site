@@ -62,9 +62,15 @@ header img {
 /* Mobile View */
 @media (max-width: 768px) {
     header img {
-        max-height: 60px; /* Set a maximum height for mobile */
+        max-height: 60px;
+    }
+
+    .services-box {
+        width: 100%;
+        min-width: 0;
     }
 }
+
 
 header h1 {
     position: absolute;
@@ -351,7 +357,7 @@ iframe {
 
 .services-box {
     flex: 2;
-    min-width: 400px;
+    
 }
 
 .services-list {
@@ -360,7 +366,9 @@ iframe {
     gap: 10px;
     padding-left: 0;
     list-style-type: none;
-    text-align: left;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    text-align: center;
 }
 
 .services-list li {
