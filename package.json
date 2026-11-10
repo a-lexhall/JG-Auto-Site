@@ -1,0 +1,13 @@
+{
+  "name": "jg-auto-site",
+  "private": true,
+  "type": "module",
+  "description": "Build tooling for the JG Auto Service website. The site itself is plain static HTML and needs no build.",
+  "scripts": {
+    "build:cars": "node scripts/build-cars.mjs",
+    "build:cars:offline": "node scripts/build-cars.mjs --offline"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}

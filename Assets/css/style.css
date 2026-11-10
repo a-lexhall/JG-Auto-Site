@@ -11,7 +11,10 @@
     --color-accent-text: #fff;
     --color-accent-bg: #232423;
 
-    --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+    /* Aptos first: Microsoft 365 users have it installed and get it for free.
+       Aptos cannot be self-hosted without a paid Microsoft licence, so Inter is
+       the hosted fallback everyone else sees. */
+    --font-body: Aptos, Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
 
     --radius: 10px;
     --radius-sm: 6px;
@@ -406,5 +409,188 @@ header picture {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* ===== Site navigation ===== */
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 0 var(--space);
+}
+
+.site-nav a[aria-current="page"] {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+/* ===== Cars for sale ===== */
+.cars-intro {
+    max-width: var(--container);
+    margin: var(--space) auto 0;
+    padding: 0 var(--space);
+    text-align: center;
+}
+
+.cars-intro h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    color: var(--color-text);
+}
+
+.cars-intro p {
+    margin: 0;
+    color: var(--color-text);
+}
+
+/* Inline in a sentence the pill padding reads as a double space */
+.cars-intro .plain-link,
+.cars-empty .plain-link {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space);
+    max-width: var(--container);
+    margin: var(--space) auto;
+    padding: 0 var(--space);
+    list-style: none;
+}
+
+.car {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* The card lifts on hover; the photo should not creep out of the rounded corner */
+.car-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg);
+}
+
+.car-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.car-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: #b4442f;
+    border-radius: var(--radius-sm);
+}
+
+.car-thumbs {
+    display: flex;
+    gap: 6px;
+    padding: 10px 10px 0;
+    margin: 0;
+    overflow-x: auto;
+    list-style: none;
+}
+
+.car-thumbs img {
+    width: 56px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: opacity var(--transition);
+}
+
+.car-thumbs a:hover img,
+.car-thumbs a:focus-visible img,
+.car-thumbs img[aria-current="true"] {
+    opacity: 1;
+}
+
+.car-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--space);
+}
+
+.car-title {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--color-text);
+}
+
+.car-price {
+    margin: 4px 0 var(--space);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.car-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px var(--space);
+    margin: 0 0 var(--space);
+}
+
+.car-specs dt {
+    font-size: 0.8rem;
+    color: #b6b6b3;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.car-specs dd {
+    margin: 0;
+    color: var(--color-text);
+}
+
+.car-desc {
+    margin: 0 0 var(--space);
+    color: var(--color-text);
+}
+
+/* Pins the enquiry links to the bottom so cards of different heights line up */
+.car-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: auto 0 0;
+}
+
+.cars-empty {
+    max-width: var(--container);
+    margin: var(--space) auto;
+    padding: 0 var(--space);
+    text-align: center;
+}
+
+.cars-updated {
+    max-width: var(--container);
+    margin: 0 auto var(--space);
+    padding: 0 var(--space);
+    font-size: 0.85rem;
+    color: #b6b6b3;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .cars-grid {
+        grid-template-columns: 1fr;
     }
 }

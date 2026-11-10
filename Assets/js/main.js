@@ -18,3 +18,28 @@ document.addEventListener("click", (event) => {
         links.forEach((link) => link.classList.remove("lit-up"));
     }, 1500);
 });
+
+// Car listings: clicking a thumbnail swaps the main photo.
+// Without JavaScript each thumbnail is still a link straight to the full photo.
+document.addEventListener("click", (event) => {
+    const thumb = event.target.closest("[data-car-thumb]");
+    if (!thumb) return;
+
+    const card = thumb.closest(".car");
+    const main = card?.querySelector("[data-car-main]");
+    if (!main) return;
+
+    event.preventDefault();
+
+    main.src = thumb.getAttribute("href");
+    main.width = thumb.dataset.width;
+    main.height = thumb.dataset.height;
+
+    const source = main.parentElement.querySelector("source");
+    if (source) source.srcset = thumb.dataset.srcset;
+
+    card.querySelectorAll("[data-car-thumb] img").forEach((image) => {
+        image.removeAttribute("aria-current");
+    });
+    thumb.querySelector("img")?.setAttribute("aria-current", "true");
+});

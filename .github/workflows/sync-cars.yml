@@ -1,0 +1,66 @@
+name: Sync cars from Airtable
+
+# Scheduled runs only happen on the default branch, so this starts working
+# once the branch is merged into main.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-cars
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the Airtable secrets exist
+        id: config
+        env:
+          TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$BASE_ID" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::AIRTABLE_TOKEN / AIRTABLE_BASE_ID are not set yet, so there is nothing to sync."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.config.outputs.configured == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.config.outputs.configured == 'true'
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.config.outputs.configured == 'true'
+        run: npm ci
+
+      - name: Build the cars page from Airtable
+        if: steps.config.outputs.configured == 'true'
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_TABLE: ${{ vars.AIRTABLE_TABLE || 'Cars' }}
+        run: npm run build:cars
+
+      - name: Commit the result if anything changed
+        if: steps.config.outputs.configured == 'true'
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update cars for sale from Airtable"
+          git push
