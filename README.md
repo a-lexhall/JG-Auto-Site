@@ -1,36 +1,30 @@
-JG Auto Service Website
+# JG Auto Service website
 
-This is the official website for JG Auto Service Alloa, a trusted auto repair service with over 50 years of experience. The site provides information about the services offered, contact details, location, and business hours.
+Source for [www.jgauto.co.uk](https://www.jgauto.co.uk/), the website for JG Auto Service, a family-run car repair and servicing garage in Alloa (est. 1972).
 
-Features:
+It's a single static page hosted on GitHub Pages. The custom domain is set in `CNAME`.
 
-Responsive design for desktop and mobile.
+## What's on the page
 
-Modern UI with clean typography and layout.
+- About the business, with a photo of the workshop
+- List of services
+- Opening hours and contact details (tap-to-call and email links)
+- Embedded Google Map (lazy-loaded)
+- Links to Facebook and the accepted payment cards
+- `AutoRepair` structured data (JSON-LD) for Google
 
-Lazy-loaded Google Maps integration.
+## Structure
 
-Contact details with direct links for calling and emailing.
+```
+index.html            the page
+Assets/css/style.css  styles
+Assets/images/        logos, icons, payment card logos
+Assets/premises.*     workshop photo
+sitemap.xml, robots.txt
+```
 
-Facebook link with an icon.
+## Making changes
 
-Service list with detailed information.
+Edit `index.html` or `style.css`, then commit and push to `main`. GitHub Pages publishes the change within a minute or two.
 
-Technologies Used:
-
-HTML5 for structured content.
-
-CSS3 for styling, including flexbox and animations.
-
-JavaScript for lazy-loading Google Maps.
-
-Google Fonts for improved typography.
-
-
-Issues & Contributions:
-
-If you find any issues or have suggestions, please open an issue in this repository.
-
-License:
-
-This project is licensed under the Creative Commons Attribution-NoDerivs (CC BY-ND) License. This means you are free to share it as-is, but modifications and derivative works are not allowed.
+© JG Auto Service. All rights reserved.

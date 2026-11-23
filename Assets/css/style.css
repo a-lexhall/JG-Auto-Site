@@ -1,31 +1,7 @@
 /* ===== Typography ===== */
-.atkinson-hyperlegible {
-    font-family: "Atkinson Hyperlegible", serif;
-}
-
-.atkinson-hyperlegible.regular {
-    font-weight: 400;
-    font-style: normal;
-}
-
-.atkinson-hyperlegible.bold {
-    font-weight: 700;
-    font-style: normal;
-}
-
-.atkinson-hyperlegible.regular-italic {
-    font-weight: 400;
-    font-style: italic;
-}
-
-.atkinson-hyperlegible.bold-italic {
-    font-weight: 700;
-    font-style: italic;
-}
-
 /* ===== General Styles ===== */
 body {
-    font-family: 'Atkinson Hyperlegible';
+    font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
     background-color: #323431;
     color: #e3e3e1;
     margin: 0;
@@ -83,7 +59,7 @@ header h1 {
     border: 0;
 }
 
-.facebook-link {
+header .facebook-link {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -171,7 +147,7 @@ header h1 {
 }
 
 .workshop-text h2 {
-    font-family: 'Atkinson Hyperlegible', serif;
+    font-family: inherit;
     font-size: 2rem;
     margin-bottom: 20px;
     color: #e3e3e1;
@@ -195,15 +171,7 @@ header h1 {
     padding: 0 20px;
 }
 
-.first-column {
-    flex: 1;
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.contact-box, .opening-hours-box, .info-box {
+.contact-box, .opening-hours-box {
     flex: 1;
     background-color: #444;
     border-radius: 10px;
@@ -214,38 +182,31 @@ header h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-box:hover, .opening-hours-box:hover, .info-box:hover {
+.contact-box:hover, .opening-hours-box:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.contact-box h3, .opening-hours-box h3, .info-box h3, .services-box h3 {
+.contact-box h3, .opening-hours-box h3, .services-box h3 {
     font-size: 2rem;
     margin-bottom: 10px;
     color: #e3e3e1;
 }
 
 
-.contact-box p, .opening-hours-box ul, .info-box p, .info-box ul {
+.contact-box p, .opening-hours-box ul {
     margin: 0;
     padding: 0;
     color: #e3e3e1;
     line-height: 1.8;
 }
 
-.opening-hours-box ul, .info-box ul {
+.opening-hours-box ul {
     list-style-type: none;
 }
 
-.opening-hours-box ul li, .info-box ul li {
+.opening-hours-box ul li {
     margin-bottom: 10px;
-}
-
-.info-box small {
-    font-size: 0.8rem;
-    color: #e3e3e1;
-    display: block;
-    margin-top: 10px;
 }
 
 /* Map Section */
@@ -316,7 +277,7 @@ iframe {
         flex-direction: column;
     }
 
-    .workshop-photo, .workshop-text, .info-box, .first-column {
+    .workshop-photo, .workshop-text {
         width: 100%;
         min-width: unset;
     }
@@ -341,7 +302,7 @@ iframe {
         margin: 0;
     }
 
-    .facebook-link {
+    header .facebook-link {
         top: 10px;
         right: 10px;
     }
@@ -411,3 +372,26 @@ iframe {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+
+/* Footer picture wrapper */
+.footer picture {
+    display: flex;
+}
+
+/* "Contact us for a quote" link */
+.quote-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s;
+}
+
+.quote-link:hover, .quote-link:focus-visible {
+    color: #43b9d3;
+}
+
+/* Visible keyboard focus */
+a:focus-visible {
+    outline: 2px solid #43b9d3;
+    outline-offset: 2px;
+}
