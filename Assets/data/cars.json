@@ -1,17 +1,1 @@
-[
-  {
-    "status": "For sale",
-    "make": "Fiat",
-    "model": "Tipo",
-    "year": 2018,
-    "price": 5000,
-    "mileage": 60000,
-    "fuel": "Diesel",
-    "gearbox": "Manual",
-    "colour": "Black",
-    "mot": "2026-11-26",
-    "photos": [
-      "/Assets/images/cars/mwxwv55u-337ibkuy.jpg"
-    ]
-  }
-]
+[]
