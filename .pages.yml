@@ -1,0 +1,82 @@
+# Pages CMS settings (https://app.pagescms.org)
+# This lets cars for sale be added and edited without touching code.
+# The listings are saved to Assets/data/cars.json and photos to Assets/images/cars/.
+
+media:
+  input: Assets/images/cars
+  output: /Assets/images/cars
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: cars
+    label: Cars for sale
+    type: file
+    path: Assets/data/cars.json
+    format: json
+    list: true
+    fields:
+      - name: status
+        label: Status
+        type: select
+        required: true
+        description: "For sale = shown on the website. Sold = shown with a SOLD label. Hidden = not shown at all."
+        options:
+          values: [For sale, Sold, Hidden]
+      - name: make
+        label: Make
+        type: string
+        required: true
+        description: "For example: Ford"
+      - name: model
+        label: Model
+        type: string
+        required: true
+        description: "For example: Focus 1.6 Zetec"
+      - name: year
+        label: Year
+        type: number
+        description: "For example: 2015"
+        options:
+          min: 1950
+          max: 2100
+      - name: price
+        label: Price (£)
+        type: number
+        description: "Numbers only, no £ sign or commas. For example: 4995. Leave empty to show POA."
+        options:
+          min: 0
+      - name: mileage
+        label: Mileage
+        type: number
+        description: "Numbers only. For example: 84000"
+        options:
+          min: 0
+      - name: fuel
+        label: Fuel
+        type: select
+        options:
+          values: [Petrol, Diesel, Hybrid, Plug-in hybrid, Electric]
+      - name: gearbox
+        label: Gearbox
+        type: select
+        options:
+          values: [Manual, Automatic]
+      - name: mot_expiry
+        label: MOT expiry
+        type: date
+        default: ""
+        description: "The date the current MOT runs out. Leave empty if not known."
+        options:
+          format: yyyy-MM-dd
+      - name: description
+        label: Description
+        type: text
+        description: "A few lines about the car: condition, service history, owners, extras."
+      - name: photos
+        label: Photos
+        type: image
+        description: "The first photo is the main one shown on the website."
+        options:
+          multiple:
+            max: 12
