@@ -1,0 +1,47 @@
+name: Shrink car photos
+
+# Runs whenever a photo is added through Pages CMS, and makes it small
+# enough to load quickly on a phone. See scripts/shrink_car_photos.py.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Assets/images/cars/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shrink-car-photos
+  cancel-in-progress: false
+
+jobs:
+  shrink:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Pillow
+        run: pip install pillow
+
+      - name: Shrink photos
+        run: python scripts/shrink_car_photos.py
+
+      - name: Commit smaller photos
+        run: |
+          if git diff --quiet -- Assets/images/cars; then
+            echo "Nothing to shrink."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Assets/images/cars
+          git commit -m "Shrink car photos"
+          git pull --rebase origin main
+          git push origin HEAD:main

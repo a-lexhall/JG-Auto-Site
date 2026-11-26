@@ -1,0 +1,78 @@
+# Pages CMS settings (https://pagescms.org)
+# This decides what shows up when someone signs in at app.pagescms.org
+# to add or update cars. The cars page (cars.html) reads the same data file.
+
+media:
+  input: Assets/images/cars
+  output: /Assets/images/cars
+  rename: random
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: cars
+    label: Cars for sale
+    type: file
+    path: Assets/data/cars.json
+    format: json
+    list: true
+    fields:
+      - name: status
+        label: Status
+        type: select
+        description: "For sale shows on the website. Sold shows with a SOLD label. Hidden keeps it off the website."
+        required: true
+        options:
+          values: [For sale, Sold, Hidden]
+      - name: make
+        label: Make
+        type: string
+        description: "For example: Ford"
+        required: true
+      - name: model
+        label: Model
+        type: string
+        description: "For example: Focus Titanium"
+        required: true
+      - name: year
+        label: Year
+        type: number
+        description: "For example: 2018"
+      - name: price
+        label: Price (£)
+        type: number
+        description: "Numbers only, no £ sign or commas. Leave blank to show POA."
+      - name: mileage
+        label: Mileage
+        type: number
+        description: "Numbers only, for example 64000"
+      - name: fuel
+        label: Fuel
+        type: select
+        options:
+          values: [Petrol, Diesel, Hybrid, Electric]
+      - name: gearbox
+        label: Gearbox
+        type: select
+        options:
+          values: [Manual, Automatic]
+      - name: engine
+        label: Engine
+        type: string
+        description: "Optional, for example: 1.0 EcoBoost"
+      - name: colour
+        label: Colour
+        type: string
+      - name: mot
+        label: MOT expiry
+        type: date
+      - name: description
+        label: Description
+        type: text
+        description: "A few lines about the car: history, condition, extras."
+      - name: photos
+        label: Photos
+        type: image
+        description: "The first photo is the main one. Landscape photos look best."
+        options:
+          multiple:
+            max: 12
