@@ -475,6 +475,13 @@ main section.last {
         height: 260px;
     }
 
+    .site-nav {
+        flex-wrap: nowrap;
+        gap: 18px;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
     .car {
         padding: 14px;
     }
